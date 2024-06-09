@@ -8,6 +8,14 @@ div {
 
 @media screen and (max-width: 1280px) {
     div {
-        width: calc(100vw - 6rem);
+        width: calc(100vw - 90px);
+    }
+}
+
+@media screen and (max-width: 640px) {
+    div {
+        width: 100vw;
+        height: calc(calc(var(--vh, 1vh) * 100) - 60px);
+        border-radius: 0;
     }
 }

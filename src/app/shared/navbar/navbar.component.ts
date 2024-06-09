@@ -6,7 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  public sideNavState: boolean = false;
+  public active: boolean = false;
+
+  onClick() {
+    this.active = !this.active;
+  }
 
   ngOnInit() {}
 
