@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { ViewportService } from './services/viewport/viewport.service'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core'
 })
 export class AppComponent {
   title = 'codelace-app'
+
+  constructor(private viewportService: ViewportService) {}
+
+  ngOnInit(): void {
+    this.viewportService.adjustHeight();
+  }
 }
