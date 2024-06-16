@@ -1,0 +1,67 @@
+<div class="canvas">
+    <div class="form-div">
+        <div class="header-div">
+            <h1 class="title highlight purple">Crear cuenta</h1>
+        </div>
+        <div class="mt-5 alert alert-danger" *ngIf="errors.length">
+            <ul>
+                <li *ngFor="let error of errors">{{ error }}</li>
+            </ul>
+        </div>
+        <form autocomplete="off" [formGroup]="form" (ngSubmit)="signup()">
+            <input type="text" placeholder="Correo electrónico" formControlName="email">
+            <div class="error-div">
+                <mat-error *ngIf="controlTouched('email') && controlHasError('email', 'required')">
+                    Este campo es obligatorio
+                </mat-error>
+                <mat-error *ngIf="controlTouched('email') && controlHasError('email', 'email')">
+                    Ingrese un correo válido
+                </mat-error>
+            </div>
+
+            <input type="text" placeholder="Nombre de usuario" formControlName="username">
+            <div class="error-div">
+                <mat-error *ngIf="controlTouched('username') && controlHasError('username', 'required')">
+                    Este campo es obligatorio.
+                </mat-error>
+                <mat-error *ngIf="controlTouched('username') && controlHasError('username', 'pattern')">
+                    Solo se permiten letras, números y guiones bajos.
+                </mat-error>
+            </div>
+
+            <input type="password" placeholder="Contraseña" formControlName="pwd">
+            <div class="error-div">
+                <mat-error *ngIf="controlTouched('pwd') && controlHasError('pwd', 'required')">
+                    Este campo es obligatorio.
+                </mat-error>
+                <mat-error *ngIf="controlTouched('pwd') && (controlHasError('pwd', 'minlength') || controlHasError('pwd', 'pattern'))">
+                    La contraseña debe tener al menos 8 caracteres, una letra y un número.
+                </mat-error>
+            </div>
+
+            <input type="password" placeholder="Confirmar contraseña" formControlName="confirmPassword">
+            <div class="error-div">
+                <mat-error *ngIf="controlTouched('confirmPassword') && controlHasError('confirmPassword', 'required')">
+                    Este campo es obligatorio.
+                </mat-error>
+                <mat-error *ngIf="controlTouched('pwd') && controlTouched('confirmPassword') && form.hasError('passwordMismatch')">
+                    Las contraseñas no coinciden.
+                </mat-error>
+                <mat-error *ngIf="controlTouched('confirmPassword') && (controlHasError('confirmPassword', 'minlength') || controlHasError('confirmPassword', 'pattern'))">
+                    La contraseña debe tener al menos 8 caracteres, una letra y un número.
+                </mat-error>
+            </div>
+            <div class="footer-div">
+                <button type="submit" [disabled]="form.invalid">
+                    Crear
+                </button>
+                <div>
+                    ¿Ya tienes cuenta?
+                    <a routerLink="/home">
+                        Inicia sesión
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
