@@ -29,7 +29,7 @@
                 </mat-error>
             </div>
 
-            <input type="text" placeholder="Contraseña" formControlName="pwd">
+            <input type="password" placeholder="Contraseña" formControlName="pwd">
             <div class="error-div">
                 <mat-error *ngIf="controlTouched('pwd') && controlHasError('pwd', 'required')">
                     Este campo es obligatorio.
@@ -39,12 +39,12 @@
                 </mat-error>
             </div>
 
-            <input type="text" placeholder="Confirmar contraseña" formControlName="confirmPassword">
+            <input type="password" placeholder="Confirmar contraseña" formControlName="confirmPassword">
             <div class="error-div">
                 <mat-error *ngIf="controlTouched('confirmPassword') && controlHasError('confirmPassword', 'required')">
                     Este campo es obligatorio.
                 </mat-error>
-                <mat-error *ngIf="controlTouched('pwd') && form.hasError('passwordMismatch')">
+                <mat-error *ngIf="controlTouched('pwd') && controlTouched('confirmPassword') && form.hasError('passwordMismatch')">
                     Las contraseñas no coinciden.
                 </mat-error>
                 <mat-error *ngIf="controlTouched('confirmPassword') && (controlHasError('confirmPassword', 'minlength') || controlHasError('confirmPassword', 'pattern'))">

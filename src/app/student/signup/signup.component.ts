@@ -1,9 +1,9 @@
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { passwordMatchValidator } from '../../validators/validators';
+import { passwordMatchValidator } from '../validators/validators';
 
 @Component({
   selector: 'app-signup',
@@ -51,7 +51,7 @@ export class SignupComponent {
             pwd: formValue.pwd
           })
             .subscribe(profile => {
-              this.snackBar.open(`Bienvenido $profile.firstname`, 'Cerrar', {
+              this.snackBar.open(`Bienvenido $profile.username`, 'Cerrar', {
                 duration: 5000,
                 verticalPosition: 'bottom',
                 horizontalPosition: 'center'
