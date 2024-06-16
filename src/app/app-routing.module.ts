@@ -4,9 +4,10 @@ import { HomeComponent } from './components/home/home.component'
 
 // Muchachones aqui se agregan la rutas
 const routes: Routes = [
+  { path: '', loadChildren: () => import('./student/student.module').then(m => m.StudentModule) },
   { path: 'home', component: HomeComponent },
   { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
-  { path: '', loadChildren: () => import('./student/student.module').then(m => m.StudentModule) },
+  { path: 'routes', loadChildren: () => import('./routes/routes.module').then(m => m.RoutesModule) },
 ]
 
 @NgModule({

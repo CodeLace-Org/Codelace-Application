@@ -5,18 +5,24 @@ import { AppComponent } from './app.component'
 import { HomeComponent } from './components/home/home.component'
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import { MaterialModule } from './material/material.module'
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { NavbarComponent } from './shared/navbar/navbar.component'
 import { ContentComponent } from './shared/content/content.component'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { AuthInterceptor } from './student/interceptor/auth.interceptor'
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent, ContentComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NavbarComponent,
+    ContentComponent,
+  ],
   imports: [
-    BrowserModule, 
-    AppRoutingModule, 
-    MaterialModule, 
-    HttpClientModule],
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    HttpClientModule,
+  ],
   providers: [
     provideAnimationsAsync(),
     {
