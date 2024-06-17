@@ -24,15 +24,16 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${environment.apiURL}/auth/token`, authRequest)
       .pipe(
         map(response => {
+          console.log('Response from server:', response);
           localStorage.setItem(authKey, JSON.stringify(response));
           this._auth = response;
-          return response.user;
+          return response.student;
         })
       );
   }
 
   get user() {
-    return this._auth?.user;
+    return this._auth?.student;
   }
 
   get token() {

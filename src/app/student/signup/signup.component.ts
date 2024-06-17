@@ -51,12 +51,12 @@ export class SignupComponent {
             pwd: formValue.pwd
           })
             .subscribe(profile => {
-              this.snackBar.open(`Bienvenido $profile.username`, 'Cerrar', {
+              this.snackBar.open(`Bienvenido ${profile.username}`, 'Cerrar', {
                 duration: 5000,
                 verticalPosition: 'bottom',
                 horizontalPosition: 'center'
               });
-              this.router.navigate(['']);
+              this.router.navigate(['home']);
             })
         },
         error: error => {
