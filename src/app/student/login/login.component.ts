@@ -25,13 +25,22 @@ export class LoginComponent {
       return;
     }
     this.authService.authenticate(this.authRequest)
-      .subscribe(profile => {
-        this.snackBar.open(`Bienvenido ${profile.username}`, 'Cerrar', {
-          duration: 5000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center'
-        });
-        this.router.navigate(['home']);
+      .subscribe({
+        next: profile => {
+          this.snackBar.open(`Bienvenido ${profile.username}`, 'Cerrar', {
+            duration: 5000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+          this.router.navigate(['home']);
+        },
+        error: error => {
+            this.snackBar.open('Verifica tus credenciales. Si no tienes cuenta, únete :)', 'Cerrar', {
+              duration: 5000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+        }
       });
   }
 }

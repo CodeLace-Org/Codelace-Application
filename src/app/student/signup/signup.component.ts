@@ -25,7 +25,6 @@ export class SignupComponent {
     confirmPassword: [, [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$')]],
   }, { validator: passwordMatchValidator });
 
-  errors: string[] = [];
   passwordVisible = false;
 
   controlHasError(control: string, error: string) {
@@ -60,11 +59,11 @@ export class SignupComponent {
             })
         },
         error: error => {
-          if (error.error.status === 400) {
-            this.errors.push(error.error.detail);
-          } else if (error.error.status === 422) {
-            this.errors.push(...error.error.errors);
-          }
+          this.snackBar.open(error, 'Cerrar', {
+            duration: 5000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
         }
       });
   }
