@@ -16,10 +16,10 @@ export interface Profile {
 
 export interface AuthResponse {
     token: string;
-    user: Profile
+    student: Profile
 }
 
 export interface AuthRequest {
     email?: string;
-    pwd?:string;
+    pwd?: string;
 }

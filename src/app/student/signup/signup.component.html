@@ -3,11 +3,6 @@
         <div class="header-div">
             <h1 class="title highlight purple">Crear cuenta</h1>
         </div>
-        <div class="mt-5 alert alert-danger" *ngIf="errors.length">
-            <ul>
-                <li *ngFor="let error of errors">{{ error }}</li>
-            </ul>
-        </div>
         <form autocomplete="off" [formGroup]="form" (ngSubmit)="signup()">
             <input type="text" placeholder="Correo electrónico" formControlName="email">
             <div class="error-div">
@@ -57,7 +52,7 @@
                 </button>
                 <div>
                     ¿Ya tienes cuenta?
-                    <a routerLink="/home">
+                    <a routerLink="/">
                         Inicia sesión
                     </a>
                 </div>

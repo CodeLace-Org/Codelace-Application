@@ -25,7 +25,6 @@ export class SignupComponent {
     confirmPassword: [, [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$')]],
   }, { validator: passwordMatchValidator });
 
-  errors: string[] = [];
   passwordVisible = false;
 
   controlHasError(control: string, error: string) {
@@ -51,20 +50,20 @@ export class SignupComponent {
             pwd: formValue.pwd
           })
             .subscribe(profile => {
-              this.snackBar.open(`Bienvenido $profile.username`, 'Cerrar', {
+              this.snackBar.open(`Bienvenido ${profile.username}`, 'Cerrar', {
                 duration: 5000,
                 verticalPosition: 'bottom',
                 horizontalPosition: 'center'
               });
-              this.router.navigate(['']);
+              this.router.navigate(['home']);
             })
         },
         error: error => {
-          if (error.error.status === 400) {
-            this.errors.push(error.error.detail);
-          } else if (error.error.status === 422) {
-            this.errors.push(...error.error.errors);
-          }
+          this.snackBar.open(error, 'Cerrar', {
+            duration: 5000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
         }
       });
   }
