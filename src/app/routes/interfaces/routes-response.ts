@@ -1,11 +1,14 @@
-export interface RoutesResponse {
-		id: number;
-		name: string;
-		description: string;
-		icon: string;
+export interface RouteResponse {
+  id: number
+  name: string
+  description: string
+  icon: string
+}
 
-	// private Long id;
-	// private String name;
-	// private String description;
-	// private String icon;
+export interface ProjectResponse {
+  id: number
+  title: string
+  description: string
+  image: string
+  level: number
 }
