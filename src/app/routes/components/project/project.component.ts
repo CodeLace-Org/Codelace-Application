@@ -8,6 +8,9 @@ import {
   ResourceResponse,
   BlogResponse
 } from '../../interfaces/routes-response'
+import { MatDialog } from '@angular/material/dialog'
+import { DialogProjectComponent } from '../dialog-project/dialog-project.component'
+import { AuthService } from '../../../student/services/auth.service'
 
 @Component({
   selector: 'app-project',
@@ -21,10 +24,13 @@ export class ProjectComponent implements OnInit {
   posts!: PostsByProjectResponse[]
   resources!: ResourceResponse[]
   blogs!: BlogResponse[]
-
+  student!: number
+  routeId!: number
   constructor (
     private route: ActivatedRoute,
-    private routesService: RoutesService
+    private routesService: RoutesService,
+    public dialog: MatDialog,
+    private authService: AuthService
   ) {}
 
   ngOnInit (): void {
@@ -32,24 +38,23 @@ export class ProjectComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.projectId = +params['id'] // El '+' convierte el string a número
     })
-    console.log(this.projectId)
 
     this.projectData = (history.state as any)['additionalData']
-
-    // OBtain student
-    const data = localStorage.getItem('codelace_auth')
-    const parsedData = JSON.parse(data || '{}')
-    const student = parsedData.student.id
-
+    this.routeId = (history.state as any)['route']
+    this.student = this.authService.user?.id ?? 0
+    console.log(history.state)
+    console.log(this.routeId)
     // Get Progress
-    this.routesService.getProjectDetails(student, this.projectId).subscribe({
-      next: projectDetails => {
-        this.progress = projectDetails.progress
-      },
-      error: error => {
-        console.error(error)
-      }
-    })
+    this.routesService
+      .getProjectDetails(this.student, this.projectId)
+      .subscribe({
+        next: projectDetails => {
+          this.progress = projectDetails.progress
+        },
+        error: error => {
+          console.error(error)
+        }
+      })
 
     // Get Post
     this.routesService.getAllPostsByProject(this.projectId).subscribe({
@@ -84,18 +89,43 @@ export class ProjectComponent implements OnInit {
     })
   }
 
-	formatearFecha(fechaString:string) {
-		const fecha = new Date(fechaString);
-		const dia = fecha.getDate();
-		const mes = fecha.getMonth();
-		const anio = fecha.getFullYear();
-	
-		const meses = [
-			'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-			'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-		];
-	
-		const fechaFormateada = `${dia} ${meses[mes]} ${anio}`;
-		return fechaFormateada;
-	}
+  formatearFecha (fechaString: string) {
+    const fecha = new Date(fechaString)
+    const dia = fecha.getDate()
+    const mes = fecha.getMonth()
+    const anio = fecha.getFullYear()
+
+    const meses = [
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Noviembre',
+      'Diciembre'
+    ]
+
+    const fechaFormateada = `${dia} ${meses[mes]} ${anio}`
+    return fechaFormateada
+  }
+
+  openDialog () {
+    this.dialog.open(DialogProjectComponent, {
+      data: {
+        student: this.student,
+        route: this.routeId,
+        project: this.projectId,
+        projectTitle: this.projectData.title
+      },
+      maxWidth: '100%',
+      width: '1600px',
+      height: '750px',
+			panelClass: "dialog-background"
+    })
+  }
 }

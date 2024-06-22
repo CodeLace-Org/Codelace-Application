@@ -1,0 +1,40 @@
+<div mat-dialog-title align="center">Detalles del proyecto</div>
+<mat-dialog-content>
+	<form id="form-post" [formGroup]="form">
+		<section id="info">
+			<label for="title">Titulo</label>
+			<input name="title" disabled value="{{data.projectTitle}}">
+			<label for="demoUrl">Demo Url</label>
+			<input name="demoUrl" formControlName="demoUrl" placeholder="https://example.com">
+			<label for="repoUrl">Repository URL</label>
+			<input name="repoUrl" formControlName="repoUrl" placeholder="https://github.com/username/repositoryname">
+			<label for="description">Descripcion</label>
+			<textarea spellcheck="true" name="description" formControlName="description"
+				placeholder="Explica que tecnologias, tecnicas, recursos usaste para completar el proyecto . . ."></textarea>
+		</section>
+		<section id="photo" class="file-upload-section">
+			<h3>Imagen del proyecto</h3>
+			<div class="file-upload" (click)="fileInput.click()">
+				<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-upload" width="52"
+					height="52" viewBox="0 0 24 24" stroke-width="1.5" stroke="#A5ABB7" fill="none"
+					stroke-linecap="round" stroke-linejoin="round">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+					<path d="M7 9l5 -5l5 5" />
+					<path d="M12 4l0 12" />
+				</svg>
+				<p>Elija una imagen</p>
+				<small>JPEG, PNG, JPG, WEBP y más formatos</small>
+			</div>
+			<input #fileInput type="file" accept="image/*" formControlName="image" (change)="getFile($event)" hidden>
+			<small>Aquí sube una imagen general que represente tu proyecto</small>
+			<div *ngIf="imagePreview" class="image-preview">
+				<img [src]="imagePreview" alt="Vista previa de la imagen">
+			</div>
+		</section>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>Salir sin guardar</button>
+	<button mat-button [disabled]="form.invalid" (click)="upload()">Publicar</button>
+</mat-dialog-actions>

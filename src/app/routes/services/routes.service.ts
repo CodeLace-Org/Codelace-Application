@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs'
 import {
   BlogResponse,
   InscriptionResponse,
+  PostResponse,
   PostsByProjectResponse,
   ProjectDetailsResponse,
   ProjectResponse,
@@ -11,6 +12,7 @@ import {
   RouteResponse
 } from '../interfaces/routes-response'
 import { environment } from '../../../environments/environment'
+import { PostRequest } from '../interfaces/routes-response'
 
 @Injectable({
   providedIn: 'root'
@@ -105,6 +107,16 @@ export class RoutesService {
   getAllBlogsByProject (project: number): Observable<BlogResponse[]> {
     return this.http
       .get<BlogResponse[]>(`${environment.apiURL}/blogs/projects/${project}`)
+      .pipe(
+        map(response => {
+          return response
+        })
+      )
+  }
+
+  createPost (postRequest: PostRequest): Observable<PostResponse> {
+    return this.http
+      .post<PostResponse>(`${environment.apiURL}/posts`, postRequest)
       .pipe(
         map(response => {
           return response

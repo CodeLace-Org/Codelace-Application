@@ -1,21 +1,34 @@
+* {
+	box-sizing: border-box;
+
+}
+
 .content::-webkit-scrollbar {
 	display: none;
 }
 
 .content {
-	height: 95%;
+	height: 98%;
 	display: grid;
 	grid-template-columns: 8fr 25px 3fr;
 	grid-template-rows: 1fr;
 	grid-auto-rows: max-content;
-	overflow-y: auto;
-	-ms-overflow-style: none;
-	padding: 1rem 3rem;
+	padding: 3rem;
 
 	>section {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
+
+		&:first-child {
+			overflow-y: scroll;
+			scroll-behavior: smooth;
+
+			/* overflow: hidden; */
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
 	}
 
 }
@@ -44,8 +57,8 @@
 
 		p {
 			border: 2px solid;
-			border-radius: 15px;
-			padding: 5px 15px;
+			border-radius: 8px;
+			padding: 2.5px 10px;
 			font-size: 15px;
 			font-weight: 700;
 		}
@@ -53,15 +66,14 @@
 
 
 	&>p {
-		color: #5C6671;
+		color: #18122B;
 		font-weight: 700;
 		font-size: 24px;
-		width: 85%;
 	}
 
 	>img {
-		width: 600px;
-		height: auto;
+		object-fit: cover;
+		aspect-ratio: 16/9;
 		border-radius: 15px;
 		/* aling midlle */
 		display: block;
@@ -88,7 +100,7 @@
 			margin-left: auto;
 			margin-right: 5rem;
 			padding: 5px 1rem;
-			border-radius: 15px;
+			border-radius: 8px;
 			background-color: #C6AFFF;
 			color: white;
 			border-color: transparent;
@@ -116,8 +128,18 @@
 
 
 #publications {
-	max-height: 1000px;
 	overflow-y: auto;
+	scroll-behavior: smooth;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+
+	padding-left: 2rem;
+
+	/* overflow: hidden; */
+	&::-webkit-scrollbar {
+		display: none;
+	}
 
 	header {
 		display: flex;
@@ -134,10 +156,11 @@
 
 	ul {
 		list-style-type: none;
+		margin: 0 ;
 		padding: 0;
 		display: flex;
 		flex-direction: column;
-		overflow-y: auto;
+		/* align-items: center; */
 		gap: 2rem;
 
 		li {
@@ -155,23 +178,27 @@
 	.card {
 		background-color: #18122B;
 		border: 1px solid transparent;
-		border-radius: 15px;
+		border-radius: 8px;
 		display: grid;
 		grid-template-columns: 4fr 6fr;
-		padding: 1rem;
+		place-content: center;
 		transition: all 0.3s ease;
+		height: 89px;
 
 		img {
-			width: 90px;
-			height: auto;
-			border-radius: 15px;
+			object-fit: cover;
+			aspect-ratio: 16/9;
+			max-width: 80%;
+			border-radius: 6px;
+			justify-self: center;
 		}
 
 		&:hover {
 			background-color: transparent;
 			border: 1px solid #18122B;
-			.info-post{
-				>span{
+
+			.info-post {
+				>span {
 					color: #18122B;
 				}
 			}
@@ -259,15 +286,17 @@
 		list-style-type: none;
 
 		li {
-			h1{
+			h1 {
 				color: #A78BFF;
 				font-size: 32px;
 			}
+
 			color: #5C6671;
 
 			img {
 				display: block;
 				margin: 0 auto;
+				border-radius: 8px;
 			}
 		}
 	}
