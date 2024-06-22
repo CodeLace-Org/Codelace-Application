@@ -1,0 +1,88 @@
+<div class="canvas">
+    <div class="side-div">
+        <div class="profile-div">
+            @if (student?.profile_picture === null) {
+                <img src="/assets/default_pfp.webp" alt="Foto de perfil">
+            } @else {
+                <img src="data:image/png;base64,{{student?.profile_picture}}" alt="Foto de perfil">
+            }
+            <p>{{student?.username}}</p>
+        </div>
+        <div class="options-div">
+            <ul>
+                <li routerLink="/profile" class="active" routerLinkActive="active">
+                    <p>Mi perfil</p>
+                </li>
+                <li routerLink="/home" routerLinkActive="active">
+                    <p>Información personal</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-div">
+        <div class="status">
+            <p>¡Hola, soy {{student?.username}}!</p>
+        </div>
+        <div class="desc">
+            @if (studentDescription === null) {
+                <p>Aún no tienes descripción :(</p>
+            } @else {
+                <p>{{student?.description}}</p>
+            }
+        </div>
+        <div class="section projects">
+            <div class="subtitle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-album" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F8FAFC" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                    <path d="M12 4v7l2 -2l2 2v-7" />
+                </svg>
+                <p>Proyectos</p>
+            </div>
+            <div class="list">
+                @if (posts.length === 0) {
+                    <p style="margin-left: 1rem;">Todavía no has hecho publicaciones :(</p>
+                }
+                @for (item of posts; track item.id) {
+                    <div class="card">
+                        <img src="data:image/png;base64,{{item.image}}" alt="Imagen de proyecto">
+                        <div class="card-content">
+                            <p class="card-title">{{item.title}}</p>
+                            <p>{{item.date}}</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="section routes">
+            <div class="subtitle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-binary-tree" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F8FAFC" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M6 20a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" />
+                    <path d="M16 4a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" />
+                    <path d="M16 20a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" />
+                    <path d="M11 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" />
+                    <path d="M21 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" />
+                    <path d="M5.058 18.306l2.88 -4.606" />
+                    <path d="M10.061 10.303l2.877 -4.604" />
+                    <path d="M10.065 13.705l2.876 4.6" />
+                    <path d="M15.063 5.7l2.881 4.61" />
+                </svg>
+                <p>Rutas de aprendizaje</p>
+            </div>
+            <div class="list">
+                @if (inscriptions.length === 0) {
+                    <p style="margin-left: 1rem;">Todavía no te has registrado en ninguna ruta :(</p>
+                }
+                @for (item of inscriptions; track item.id) {
+                    <div class="card route-card" (click)="selectRoute(item.route)">
+                        <div class="icon-div" [innerHTML]="item.route.icon | icon"></div>
+                        <div class="card-content">
+                            <p class="card-title">{{item.route.name}}</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
