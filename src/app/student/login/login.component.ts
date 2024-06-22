@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   authRequest: AuthRequest = {};
   
@@ -19,6 +19,12 @@ export class LoginComponent {
     private snackBar: MatSnackBar,
     private router: Router
   ){}
+
+  ngOnInit(): void {
+    if (this.authService.token) {
+      this.router.navigate(['/home']);
+    }
+  }
   
   login(form: NgForm) {
     if (form.invalid) {
