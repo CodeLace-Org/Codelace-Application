@@ -47,7 +47,7 @@ export class RouteComponent implements OnInit {
 
   handleProject (project: ProjectResponse) {
     this.router.navigate(['routes/project', project.id], {
-      state: { additionalData: project }
+      state: { additionalData: project , route: this.routeId}
     })
   }
 

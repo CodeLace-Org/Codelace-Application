@@ -72,3 +72,23 @@ export interface BlogResponse {
   project: ProjectResponse
   image: string
 }
+
+export interface PostRequest {
+  student?: number
+  route?: number
+  demoUrl?: string
+  project?: number
+  repoUrl?: string
+  description?: string
+  image?: string
+}
+
+export interface PostResponse {
+  id: number
+  student: StudentResponse
+  demoUrl: string
+  repoUrl: string
+  description: string
+  date: Date
+  image: string
+}

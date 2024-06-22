@@ -1,0 +1,93 @@
+#form-post {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+
+	#info {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		width: 95%;
+
+		textarea {
+			width: auto;
+			height: 250px;
+			resize: none;
+			border-radius: 4px;
+			font-size: 20px;
+		}
+
+		input {
+			height: 43px;
+			border-radius: 4px;
+			color: black;
+			font-size: 20px;
+			&:disabled{
+				background-color: #999;
+			}
+
+			&::placeholder{
+				font-weight: 300;
+			}
+		}
+	}
+
+	#photo {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.file-upload-section {
+	padding: 20px;
+	text-align: start;
+}
+
+.file-upload {
+	border-radius: 8px;
+	cursor: pointer;
+	border: 2px dashed #ccc;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.file-upload svg {
+	width: 50px;
+	margin-bottom: 10px;
+}
+
+.file-upload p {
+	font-size: 16px;
+	margin: 0;
+}
+
+.file-upload small {
+	color: #999;
+}
+
+.file-upload-section h3 {
+	margin: 0;
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.file-upload-section small {
+	display: block;
+	margin-top: 10px;
+	color: #999;
+}
+.image-preview {
+	margin-top: 10px;
+  }
+  
+  .image-preview img {
+	max-width: 250px;
+	height: auto;
+	border-radius: 8px;
+	display: block;
+	margin: 0 auto;
+  }
