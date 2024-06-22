@@ -11,11 +11,31 @@
 	overflow-y: auto;
 	-ms-overflow-style: none;
 
+	h1 {
+		margin-top: 3rem;
+		color: #C6AFFF;
+		font-weight: 700;
+		text-align: center;
+	}
+
 	&>p {
 		color: #5C6671;
 		font-weight: 700;
 		font-size: 24px;
 		text-align: center;
+	}
+
+	button{
+		background-color: #C6AFFF;
+		border-color: transparent;
+		color: white;
+		padding:  0.5rem 2.5rem;
+		border-radius: 15px;
+		cursor: pointer;
+		transition: background-color 0.5s ease-in-out;
+		&:hover{
+			background-color: #18122B;
+		}
 	}
 
 	ul {
@@ -27,14 +47,6 @@
 		justify-content: space-evenly;
 		align-items: stretch;
 	}
-
-	h1 {
-		margin-top: 3rem;
-		color: #C6AFFF;
-		font-weight: 700;
-		text-align: center;
-	}
-
 
 }
 
@@ -48,7 +60,7 @@
 	display: grid;
 	gap: 1rem;
 	/* transition color*/
-	transition: all 0.5s ease-in-out;
+	transition: all 0.6s ease-in-out;
 
 	header {
 		display: flex;
@@ -78,8 +90,6 @@
 		flex-direction: column;
 
 		p:first-child {
-			color: white;
-			background: #00bfd8;
 			align-self: flex-start;
 			font-size: 20px;
 			font-weight: 700;
@@ -87,7 +97,7 @@
 		}
 
 		p:last-child {
-			color: #18122B;
+			color: #5C6671;
 			font-size: 14px;
 			font-weight: 700;
 		}
@@ -96,16 +106,18 @@
 	&:hover {
 		background-color: #18122B;
 		border-color: #18122B;
-		article{
+
+		article {
 			color: #d1d1d1;
 		}
+
 		section {
 			& p:first-child {
-				color: #18122B;
+				color: white;
 			}
 
 			& p:last-child {
-				color: white;
+				color: #d1d1d1;
 
 			}
 		}
@@ -120,31 +132,22 @@
 		}
 
 		&>p {
-			font-size: 12px;
+			font-size: 11px;
 		}
+
+		width: 95dvw;
 	}
 
-	/* .card-route {
-		width: 80dvw;
-		height: 200px;
-		display: flex;
-		align-items: center;
+	.card-project {
+		width: 60dvw;
 
-		:not(div) {
-			padding-right: 1rem;
-		}
-
-		div {
-
-			p:first-child {
-				font-size: 14px;
-			}
-
-			p:last-child {
-				font-size: 10px;
+		header {
+			img {
+				width: 50dvw;
+				height: auto;
 			}
 		}
-	} */
+	}
 }
 
 @media screen and (max-width: 1280px) {
@@ -152,12 +155,9 @@
 		&>p {
 			font-size: 18px;
 		}
-	}
 
-	/* .card-route {
-		width: 65dvw;
-		height: 200px;
-		display: flex;
-		align-items: center;
-	} */
+		ul {
+			flex-direction: column;
+		}
+	}
 }

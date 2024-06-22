@@ -6,9 +6,6 @@ import {
   RouteResponse
 } from '../../interfaces/routes-response'
 import { Location } from '@angular/common'
-import { AbstractControl } from '@angular/forms'
-import { AppModule } from '../../../app.module'
-import { catchError } from 'rxjs'
 
 @Component({
   selector: 'app-route',
@@ -34,7 +31,7 @@ export class RouteComponent implements OnInit {
     })
 
     // Obtiene el estado adicional del router
-    this.routeData = (this.location.getState() as any)['additionalData']
+    this.routeData = (history.state as any)['additionalData']
 
     // Obtiene los proyectos de la ruta
     this.routesService.getAllProjectsByRoute(this.routeId).subscribe({
@@ -48,9 +45,25 @@ export class RouteComponent implements OnInit {
     })
   }
 
-  handleProject (item: ProjectResponse) {
-    this.router.navigate(['/projects', item.id], {
-      state: { additionalData: item }
+  handleProject (project: ProjectResponse) {
+    this.router.navigate(['routes/project', project.id], {
+      state: { additionalData: project }
+    })
+  }
+
+  handleInscription (route: number) {
+    // Obtenemos el usuario del sesion storage
+    const data = localStorage.getItem('codelace_auth')
+    const parsedData = JSON.parse(data || '{}')
+    const student = parsedData.student.id
+
+    this.routesService.createInscription(student, route).subscribe({
+      next: inscription => {
+        console.log(inscription)
+      },
+      error: error => {
+        console.error(error)
+      }
     })
   }
 }

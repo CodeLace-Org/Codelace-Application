@@ -1,7 +1,15 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable, inject } from '@angular/core'
 import { Observable, map } from 'rxjs'
-import { ProjectResponse, RouteResponse } from '../interfaces/routes-response'
+import {
+  BlogResponse,
+  InscriptionResponse,
+  PostsByProjectResponse,
+  ProjectDetailsResponse,
+  ProjectResponse,
+  ResourceResponse,
+  RouteResponse
+} from '../interfaces/routes-response'
 import { environment } from '../../../environments/environment'
 
 @Injectable({
@@ -10,6 +18,7 @@ import { environment } from '../../../environments/environment'
 export class RoutesService {
   private http = inject(HttpClient)
 
+  // PAGE ROUTES
   getAllRoutes (): Observable<RouteResponse[]> {
     return this.http.get<RouteResponse[]>(`${environment.apiURL}/routes`).pipe(
       map(response => {
@@ -24,6 +33,7 @@ export class RoutesService {
     )
   }
 
+  // PAGE ROUTE
   getAllProjectsByRoute (routeId: number): Observable<ProjectResponse[]> {
     return this.http
       .get<ProjectResponse[]>(
@@ -36,6 +46,73 @@ export class RoutesService {
       )
   }
 
+  createInscription (
+    student: number,
+    route: number
+  ): Observable<InscriptionResponse> {
+    return this.http
+      .post<InscriptionResponse>(`${environment.apiURL}/inscriptions`, {
+        student,
+        route
+      })
+      .pipe(
+        map(response => {
+          return response
+        })
+      )
+  }
+
+  // PAGE PROJECT
+  getProjectDetails (
+    student: number,
+    project: number
+  ): Observable<ProjectDetailsResponse> {
+    return this.http
+      .get<ProjectDetailsResponse>(
+        `${environment.apiURL}/students/${student}/projects/${project}/details`
+      )
+      .pipe(
+        map(response => {
+          return response
+        })
+      )
+  }
+
+  getAllPostsByProject (project: number): Observable<PostsByProjectResponse[]> {
+    return this.http
+      .get<PostsByProjectResponse[]>(
+        `${environment.apiURL}/projects/${project}/posts`
+      )
+      .pipe(
+        map(response => {
+          return response
+        })
+      )
+  }
+
+  getAllResourcesByProject (project: number): Observable<ResourceResponse[]> {
+    return this.http
+      .get<ResourceResponse[]>(
+        `${environment.apiURL}/resources/project/${project}`
+      )
+      .pipe(
+        map(response => {
+          return response
+        })
+      )
+  }
+
+  getAllBlogsByProject (project: number): Observable<BlogResponse[]> {
+    return this.http
+      .get<BlogResponse[]>(`${environment.apiURL}/blogs/projects/${project}`)
+      .pipe(
+        map(response => {
+          return response
+        })
+      )
+  }
+
+  // UTILS
   cleanSVG (svgString: string): string {
     // Elimina la declaración XML y los comentarios
     svgString = svgString.replace(/<\?xml.*?\?>|<!--.*?-->/g, '').trim()
