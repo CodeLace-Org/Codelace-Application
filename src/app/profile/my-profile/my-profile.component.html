@@ -1,8 +1,12 @@
 <div class="canvas">
     <div class="side-div">
         <div class="profile-div">
-            <img src="/assets/default_pfp.webp" alt="Foto de perfil">
-            <p>Pepito</p>
+            @if (student?.profile_picture === null) {
+                <img src="/assets/default_pfp.webp" alt="Foto de perfil">
+            } @else {
+                <img src="data:image/png;base64,{{student?.profile_picture}}" alt="Foto de perfil">
+            }
+            <p>{{student?.username}}</p>
         </div>
         <div class="options-div">
             <ul>
@@ -17,10 +21,14 @@
     </div>
     <div class="main-div">
         <div class="status">
-            <p>Hola, soy Pepito</p>
+            <p>¡Hola, soy {{student?.username}}!</p>
         </div>
         <div class="desc">
-            <p>Estudiante de programación apasionado de la Universidad Politécnica. Fuera de las aulas, me encanta resolver desafíos de codificación y pasar tiempo con amigos compartiendo memes tecnológicos.</p>
+            @if (studentDescription === null) {
+                <p>Aún no tienes descripción :(</p>
+            } @else {
+                <p>{{student?.description}}</p>
+            }
         </div>
         <div class="section projects">
             <div class="subtitle">
@@ -32,20 +40,18 @@
                 <p>Proyectos</p>
             </div>
             <div class="list">
-                <div class="card">
-                    <img src="/assets/default_pfp.webp" alt="Imagen de proyecto">
-                    <div class="card-content">
-                        <p class="card-title">Landing Page con CSS & HTML</p>
-                        <p>Subido el 02 julio 2023</p>
+                @if (posts.length === 0) {
+                    <p style="margin-left: 1rem;">Todavía no has hecho publicaciones :(</p>
+                }
+                @for (item of posts; track item.id) {
+                    <div class="card">
+                        <img src="data:image/png;base64,{{item.image}}" alt="Imagen de proyecto">
+                        <div class="card-content">
+                            <p class="card-title">{{item.title}}</p>
+                            <p>{{item.date}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card">
-                    <img src="/assets/default_pfp.webp" alt="Imagen de proyecto">
-                    <div class="card-content">
-                        <p class="card-title">Landing Page con CSS & HTML</p>
-                        <p>Subido el 02 julio 2023</p>
-                    </div>
-                </div>
+                }
             </div>
         </div>
         <div class="section routes">
@@ -69,7 +75,7 @@
                     <p style="margin-left: 1rem;">Todavía no te has registrado en ninguna ruta :(</p>
                 }
                 @for (item of inscriptions; track item.id) {
-                    <div class="card route-card">
+                    <div class="card route-card" (click)="selectRoute(item.route)">
                         <div class="icon-div" [innerHTML]="item.route.icon | icon"></div>
                         <div class="card-content">
                             <p class="card-title">{{item.route.name}}</p>

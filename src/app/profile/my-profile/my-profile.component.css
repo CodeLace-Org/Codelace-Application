@@ -151,6 +151,10 @@
     }
 }
 
+.card:hover {
+    cursor: pointer;
+}
+
 .section {
     margin-bottom: 2rem;
 }
