@@ -8,6 +8,7 @@ import { PostResponse } from '../../post/interfaces/post.interface';
 import { RouteResponse } from '../../routes/interfaces/routes-response';
 import { StudentService } from '../../student/services/student.service';
 import { Profile } from '../../student/interfaces/auth.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-my-profile',
@@ -17,10 +18,6 @@ import { Profile } from '../../student/interfaces/auth.interface';
 export class MyProfileComponent implements OnInit {
   inscriptions: InscriptionResponse[] = [];
   posts: PostResponse[] = [];
-  studentUsername: string = '';
-  studentPicture?: string;
-  studentDescription?: string;
-  studentStatus?: string;
   student?: Profile;
 
   constructor(
@@ -28,7 +25,8 @@ export class MyProfileComponent implements OnInit {
     private inscriptionService: InscriptionService,
     private authService: AuthService,
     private postService: PostService,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -72,6 +70,16 @@ export class MyProfileComponent implements OnInit {
   selectRoute(route: RouteResponse) {
     this.router.navigate(['routes', route.id], {
       state: { additionalData: route }
+    });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+    this.snackBar.open('Sesión cerrada', 'Cerrar', {
+      duration: 5000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center'
     });
   }
 }
