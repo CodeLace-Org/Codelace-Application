@@ -1,7 +1,7 @@
 <div class="content">
 	<h1>{{routeData.name}}</h1>
 	<p>{{routeData.description}}</p>
-	<button>Empezar ruta</button>
+	<button (click)="handleInscription(routeData.id)">Empezar ruta</button>
 
 	<ul>
 		@for (item of projectData; track item.id) {

@@ -26,7 +26,7 @@ export class RoutesComponent implements OnInit {
 
   handleRoute (route: RouteResponse) {
     // Redirige a la ruta deseada con el ID de la ruta
-    this.router.navigate(['routes/', route.id], {
+    this.router.navigate(['routes', route.id], {
       state: { additionalData: route }
     })
   }

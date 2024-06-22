@@ -6,6 +6,7 @@ import { RoutesComponent } from './routes.component';
 import { RouteComponent } from './components/route/route.component';
 import { IconPipe } from './pipes/icon.pipe';
 import { ProjectComponent } from './components/project/project.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ProjectComponent } from './components/project/project.component';
   ],
   imports: [
     CommonModule,
-    RoutesRoutingModule
+    RoutesRoutingModule,
+		FormsModule
   ]
 })
 export class RoutesModule { }
