@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
   { path: 'routes', loadChildren: () => import('./routes/routes.module').then(m => m.RoutesModule) },
+  { path: 'inscription', loadChildren: () => import('./inscription/inscription.module').then(m => m.InscriptionModule) },
 ]
 
 @NgModule({

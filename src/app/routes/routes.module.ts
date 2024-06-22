@@ -18,6 +18,9 @@ import { ProjectComponent } from './components/project/project.component';
   imports: [
     CommonModule,
     RoutesRoutingModule
+  ],
+  exports: [
+    IconPipe,
   ]
 })
 export class RoutesModule { }
