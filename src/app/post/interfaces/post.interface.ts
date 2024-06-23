@@ -5,7 +5,7 @@ export interface PostResponse {
     student: StudentResponse;
     demoUrl: string;
     repoUrl: string;
-    descripcion: string;
+    description: string;
     title: string;
     date: string;
     image: string;

@@ -1,0 +1,22 @@
+<div class="canvas">
+    <div class="content-div">
+        <div class="title">
+            <p>Mis Proyectos</p>
+        </div>
+        <div class="list">
+            @if (posts.length === 0) {
+                <p style="margin-left: 1rem;">Todavía no has hecho publicaciones :(</p>
+            }
+            @for (item of posts; track item.id) {
+                <div class="card">
+                    <img src="data:image/png;base64,{{item.image}}" alt="Imagen de proyecto">
+                    <div class="card-content">
+                        <p class="card-title">{{item.title}}</p>
+                        <p class="card-description">{{item.description}}</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <br>
+    </div>
+</div>
