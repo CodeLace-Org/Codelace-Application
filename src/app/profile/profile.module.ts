@@ -6,6 +6,10 @@ import { ProfileComponent } from './profile.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { IconPipe } from './pipes/icon.pipe';
 import { SlicePipe } from './pipes/slice.pipe';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material/material.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -13,11 +17,17 @@ import { SlicePipe } from './pipes/slice.pipe';
     ProfileComponent,
     MyProfileComponent,
     IconPipe,
-    SlicePipe
+    SlicePipe,
+    EditProfileComponent,
+    
   ],
   imports: [
     CommonModule,
     ProfileRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    MatFormFieldModule
   ]
 })
 export class ProfileModule { }

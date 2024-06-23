@@ -23,3 +23,16 @@ export interface AuthRequest {
     email?: string;
     pwd?: string;
 }
+
+export interface EditProfileRequest {
+    username: string,
+    description: string,
+    status: string,
+    email: string
+}
+
+export interface EditPasswordRequest {
+    pwd: string;
+    newPassword: string;
+    confirmPassword: string;
+}
