@@ -9,6 +9,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component'
 import { ContentComponent } from './shared/content/content.component'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { AuthInterceptor } from './student/interceptor/auth.interceptor'
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AuthInterceptor } from './student/interceptor/auth.interceptor'
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     provideAnimationsAsync(),
