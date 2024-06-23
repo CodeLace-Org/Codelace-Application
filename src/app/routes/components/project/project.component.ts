@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { RoutesService } from '../../services/routes.service'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import {
   ProjectResponse,
   ProgressResponse,
@@ -27,6 +27,7 @@ export class ProjectComponent implements OnInit {
   student!: number
   routeId!: number
   constructor (
+    private router: Router,
     private route: ActivatedRoute,
     private routesService: RoutesService,
     public dialog: MatDialog,
@@ -128,4 +129,8 @@ export class ProjectComponent implements OnInit {
 			panelClass: "dialog-background"
     })
   }
+
+  handleRoute(post: PostsByProjectResponse){
+    this.router.navigate(['post/post-information'], { queryParams: { studentId: post.student.id , projectId: this.projectId, postId: post.id} });
+  } 
 }
