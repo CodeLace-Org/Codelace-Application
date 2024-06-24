@@ -1,8 +1,9 @@
 <div class="content">
 	<h1>{{routeData.name}}</h1>
 	<p>{{routeData.description}}</p>
+	@if (!isInscribed) {
 	<button (click)="handleInscription(routeData.id)">Empezar ruta</button>
-
+	}
 	<ul>
 		@for (item of projectData; track item.id) {
 		<article class="card-project" (click)="handleProject(item)">
@@ -17,7 +18,7 @@
 				}
 				@case (3) {
 				<article style="border-color: red;">Avanzado</article>
-			
+
 				}
 				@default {
 				<article>Desconocido</article>

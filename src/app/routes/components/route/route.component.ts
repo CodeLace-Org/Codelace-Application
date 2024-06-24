@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { RoutesService } from '../../services/routes.service'
+import { InscriptionService } from '../../../inscription/services/inscription.service'
+import { AuthService } from '../../../student/services/auth.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import {
   ProjectResponse,
   RouteResponse
 } from '../../interfaces/routes-response'
-import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-route',
@@ -15,13 +17,16 @@ import { Location } from '@angular/common'
 export class RouteComponent implements OnInit {
   routeId: number = 0
   routeData!: RouteResponse
-
   projectData: ProjectResponse[] = []
+  isInscribed: boolean = false
+
   constructor (
     private route: ActivatedRoute,
     private router: Router,
     private routesService: RoutesService,
-    private location: Location
+    private inscriptionService: InscriptionService,
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit (): void {
@@ -43,11 +48,28 @@ export class RouteComponent implements OnInit {
         console.error(error)
       }
     })
+
+    // obtiene inscripcion
+    this.inscriptionService
+      .getAllInscriptionsByStudent(this.authService.user?.id!)
+      .subscribe({
+        next: inscriptions => {
+          console.log(inscriptions)
+          if (inscriptions.length > 0) {
+            this.isInscribed = inscriptions.some(
+              inscription => inscription.route.id === this.routeId
+            )
+          }
+        },
+        error: error => {
+          console.error(error)
+        }
+      })
   }
 
   handleProject (project: ProjectResponse) {
     this.router.navigate(['routes/project', project.id], {
-      state: { additionalData: project , route: this.routeId}
+      state: { additionalData: project, route: this.routeId }
     })
   }
 
@@ -60,6 +82,10 @@ export class RouteComponent implements OnInit {
     this.routesService.createInscription(student, route).subscribe({
       next: inscription => {
         console.log(inscription)
+        this.snackBar.open('Inscripción exitosa', 'Cerrar', {
+          duration: 3000
+        })
+        this.isInscribed = true
       },
       error: error => {
         console.error(error)
