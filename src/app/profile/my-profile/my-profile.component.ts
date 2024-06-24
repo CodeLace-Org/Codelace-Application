@@ -63,8 +63,8 @@ export class MyProfileComponent implements OnInit {
     }
   }
 
-  selectPost(postId: number) {
-    this.router.navigate(['post'], { queryParams: { post: postId } });
+  selectPost(post: PostResponse) {
+    this.router.navigate(['post/post-information'], { queryParams: { studentId: post.student.id , projectId: null, postId: post.id} });
   }
 
   selectRoute(route: RouteResponse) {
