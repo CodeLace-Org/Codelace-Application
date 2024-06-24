@@ -71,7 +71,7 @@ export class ProjectComponent implements OnInit {
     // Get Resources
     this.routesService.getAllResourcesByProject(this.projectId).subscribe({
       next: resources => {
-        console.log(resources)
+        console.log('resources', resources)
         this.resources = resources
       },
       error: error => {
@@ -126,11 +126,17 @@ export class ProjectComponent implements OnInit {
       maxWidth: '100%',
       width: '1600px',
       height: '750px',
-			panelClass: "dialog-background"
+      panelClass: 'dialog-background'
     })
   }
 
-  handleRoute(post: PostsByProjectResponse){
-    this.router.navigate(['post/post-information'], { queryParams: { studentId: post.student.id , projectId: this.projectId, postId: post.id} });
-  } 
+  handleRoute (post: PostsByProjectResponse) {
+    this.router.navigate(['post/post-information'], {
+      queryParams: {
+        studentId: post.student.id,
+        projectId: this.projectId,
+        postId: post.id
+      }
+    })
+  }
 }
