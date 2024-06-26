@@ -240,7 +240,6 @@
     border: 1px solid #C6AFFF;
     border-radius: 8px 0px 0px 8px;
     border-right: none;
-    text-aling: center;
 }
 
 .textarea-comment::placeholder {
@@ -276,12 +275,12 @@
 }
 
 @media (max-width: 550px) {
-    .content, #comments {
+    .content {
         grid-template-columns: 1fr;
         padding: 0px;
     }
 
-    #post-header, .profile, #post-information header, .container, .icons, .project-description, .send-comment, .form-send-comment {
+    #post-header, .profile, #post-information header, .icons, .project-description {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -292,6 +291,19 @@
         height: 100px;
     }
 
+    .send-comment {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center !important;
+    }
+
     .box, .article {
         padding: 10px;
     }
@@ -300,9 +312,10 @@
         display: none;
     }
 
-    .textarea-comment, .button-submit {
-        width: 100%;
-        border-radius: 0;
+    .textarea-comment {
+        flex-grow:unset; 
+        width: 85%;
+        border-radius: 8;
     }
 
     .textarea-comment {

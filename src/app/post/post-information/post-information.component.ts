@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../services/post.service';
 import { CommentResponse, PostResponseId } from '../interfaces/post.interface';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../student/services/auth.service';
+import { Profile } from '../../student/interfaces/auth.interface';
 
 @Component({
   selector: 'app-post-information',
@@ -10,13 +12,13 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrl: './post-information.component.css'
 })
 export class PostInformationComponent implements OnInit {
-  studentId: number = 0
-  projectId: number = 0
-  postId: number = 0
-  post!: PostResponseId
-  comments!: CommentResponse[]
-  hasRocket: boolean = false
-  svgColor!: string;
+  // projectId: number = 0
+  postId: number = 0;
+  post!: PostResponseId;
+  comments!: CommentResponse[];
+  hasRocket: boolean = false;
+  svgColor: string = '#A5ABB7';
+  studentId: number = 0;
 
   private readonly formBuilder = inject(FormBuilder);
   formGroup = this.formBuilder.group({
@@ -26,65 +28,58 @@ export class PostInformationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private postsService: PostService
+    private postsService: PostService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
-
+    const student = this.authService.user;
     // Obtiene el Id del estudiante y del proyecto
     this.route.queryParams.subscribe(params => {
-      this.studentId = +params['studentId'];
-      this.projectId = +params['projectId'];
       this.postId = +params['postId'];
     })
-    //console.log(this.studentId, this.projectId, this.postId);
 
-    // Get getPostById
-    this.postsService.getPostById(this.postId).subscribe({
-      next: post => {
-        this.post = post
-        console.log(post)
-      },
-      error: error => {
-        console.error(error);
-      }
-    })
+    if(student) {
+      this.studentId = student.id;
+      // Get getPostById
+      this.getPost(this.postId);
 
-    // Get getAllCommentsByPostId
-    this.postsService.getAllCommentsByPostId(this.postId).subscribe({
-      next: comments => {
-        this.comments = comments
-        console.log(comments)
-      },
-      error: error => {
-        console.error(error);
-      }
-    })
-
-    // Get verifyRocket
-    this.postsService.verifyRocket(this.postId, this.studentId).subscribe({
-      next: rocket => {
-        if (rocket.length != 0) {
-          this.hasRocket = true;
-          this.svgColor = '#C6AFFF';
-        }
-        else {
-          this.hasRocket = false;
-          this.svgColor = 'A5ABB7';
-        }
-        console.log(rocket)
-      },
-      error: error => {
-        if (error.status === 404) {
-          // Manejo específico para el error 404 - Rocket not found.
-          this.hasRocket = false;
-          console.log("Rocket not found.");
-        } else {
-          // Manejo general de otros errores
+      // Get getAllCommentsByPostId
+      this.postsService.getAllCommentsByPostId(this.postId).subscribe({
+        next: comments => {
+          this.comments = comments
+          console.log(comments)
+        },
+        error: error => {
           console.error(error);
         }
-      }
-    })
+      })
+
+      // Get verifyRocket
+      this.postsService.verifyRocket(this.postId, this.studentId).subscribe({
+        next: rocket => {
+          if (rocket.length != 0) {
+            this.hasRocket = true;
+            this.svgColor = '#C6AFFF';
+          }
+          else {
+            this.hasRocket = false;
+            this.svgColor = '#A5ABB7';
+          }
+          console.log(rocket)
+        },
+        error: error => {
+          if (error.status === 404) {
+            // Manejo específico para el error 404 - Rocket not found.
+            this.hasRocket = false;
+            console.log("Rocket not found.");
+          } else {
+            // Manejo general de otros errores
+            console.error(error);
+          }
+        }
+      })
+    }
   }
 
   formatearFecha(fechaString: string) {
@@ -121,6 +116,7 @@ export class PostInformationComponent implements OnInit {
       this.postsService.createComment(this.postId, this.studentId, contentValue).subscribe({
         next: comment => {
           this.comments.push(comment)
+          this.getPost(this.postId);
           console.log(comment)
         },
         error: error => {
@@ -129,6 +125,18 @@ export class PostInformationComponent implements OnInit {
       })
     }
     
+  }
+
+  getPost(id: number){
+    this.postsService.getPostById(id).subscribe({
+      next: post => {
+        this.post = post
+        console.log(post)
+      },
+      error: error => {
+        console.error(error);
+      }
+    })
   }
 
   redirectToUrl(url: string): void {
