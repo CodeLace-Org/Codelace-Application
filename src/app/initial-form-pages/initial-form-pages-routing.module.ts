@@ -5,7 +5,6 @@ import { InitialFormPage1Component } from './initial-form-page-1/initial-form-pa
 import { InitialFormPage2Component } from './initial-form-page-2/initial-form-page-2.component';
 
 const routes: Routes = [
-  { path: '', component: InitialFormPagesComponent },
   { path: 'initial-form-page-1', component: InitialFormPage1Component },
   { path: 'initial-form-page-2', component: InitialFormPage2Component }
 ];
