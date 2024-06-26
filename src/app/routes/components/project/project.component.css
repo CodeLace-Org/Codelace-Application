@@ -338,6 +338,8 @@
 				display: block;
 				margin: 0 auto;
 				border-radius: 8px;
+				object-fit: cover;
+				width: 100%;
 			}
 		}
 	}
