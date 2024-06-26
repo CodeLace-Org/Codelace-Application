@@ -10,6 +10,7 @@ import { ContentComponent } from './shared/content/content.component'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { AuthInterceptor } from './student/interceptor/auth.interceptor'
 import { FormsModule } from '@angular/forms'
+import { InitialFormPagesModule } from './initial-form-pages/initial-form-pages.module'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms'
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    InitialFormPagesModule
   ],
   providers: [
     provideAnimationsAsync(),

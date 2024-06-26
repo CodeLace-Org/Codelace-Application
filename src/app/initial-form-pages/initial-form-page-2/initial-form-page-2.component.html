@@ -1,0 +1,27 @@
+<div class="content">
+    <h1>En función de tus respuestas, te recomendamos:</h1>
+    
+    <mat-card class="example-card" appearance="outlined">
+      <div class="card-container">
+        <div [innerHTML]="routeData!.icon| icon"></div>
+        <mat-card-content>
+          <p class="name" *ngIf="routeData">{{ routeData.name }}</p>
+          <p class="description" *ngIf="routeData">{{ routeData.description }}</p>
+        </mat-card-content>
+      </div>
+    </mat-card>
+    
+    <div>
+      <p>No te preocupes si recién estás iniciando, se te proporcionarán todos los recursos</p>
+      <p>para tu aprendizaje</p>
+    </div>
+
+    <div class="footer-div">
+        <a [routerLink]="">
+            <button type="submit">
+                Ir a inicio
+            </button>
+        </a>
+    <div>
+  </div>
+  

@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'routes', loadChildren: () => import('./routes/routes.module').then(m => m.RoutesModule), canActivate: [AuthGuard] },
   { path: 'inscription', loadChildren: () => import('./inscription/inscription.module').then(m => m.InscriptionModule), canActivate: [AuthGuard] },
   { path: 'post', loadChildren: () => import('./post/post.module').then(m => m.PostModule), canActivate: [AuthGuard] },
-  { path: 'project', loadChildren: () => import('./project/project.module').then(m => m.ProjectModule), canActivate: [AuthGuard] },
+  { path: 'initial-form-pages', loadChildren: () => import('./initial-form-pages/initial-form-pages.module').then(m => m.InitialFormPagesModule) },
+  { path: 'project', loadChildren: () => import('./project/project.module').then(m => m.ProjectModule), canActivate: [AuthGuard] }
 ]
 
 @NgModule({
