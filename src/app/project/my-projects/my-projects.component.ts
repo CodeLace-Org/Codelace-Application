@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../student/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../post/services/post.service';
@@ -13,7 +14,8 @@ export class MyProjectsComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ){}
 
   ngOnInit(): void{
@@ -31,4 +33,7 @@ export class MyProjectsComponent implements OnInit {
     }
   }
 
+  selectPost(post: PostResponse) {
+    this.router.navigate(['post/post-information'], { queryParams: { studentId: post.student.id , projectId: null, postId: post.id} });
+  }
 }
