@@ -133,8 +133,6 @@ export class ProjectComponent implements OnInit {
   handleRoute (post: PostsByProjectResponse) {
     this.router.navigate(['post/post-information'], {
       queryParams: {
-        studentId: post.student.id,
-        projectId: this.projectId,
         postId: post.id
       }
     })

@@ -34,6 +34,6 @@ export class MyProjectsComponent implements OnInit {
   }
 
   selectPost(post: PostResponse) {
-    this.router.navigate(['post/post-information'], { queryParams: { studentId: post.student.id , projectId: null, postId: post.id} });
+    this.router.navigate(['post/post-information'], { queryParams: { postId: post.id} });
   }
 }
