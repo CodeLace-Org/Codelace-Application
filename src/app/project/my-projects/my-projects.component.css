@@ -31,24 +31,25 @@
 
 .list{
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem;
+    row-gap: 2rem;
+    column-gap: 1rem;
 }
 
 .card{
     width: 25rem;
-    height: 400px;
+    min-width: 250px;
+    min-height: 250px;
     padding: 5px 20px 5px 20px;
     background-color: #F8FAFC;
     border: 5px solid #C6AFFF;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     img{
-        width: 20rem;
+        width: 300px;
         height: 200px;
         border-radius: 5px;
     }
@@ -63,4 +64,38 @@
 
 .card-description{
     text-align: justify;
+}
+
+@media screen and (max-width: 1080px){
+    .card{
+        width: 20rem;
+    }
+}
+
+@media screen and (max-width: 920px){
+    .card{
+        width: 15rem;
+        img{
+            width: 200px;
+            height: 150px;
+        }
+    }
+}
+
+@media screen and (max-width: 770px){
+    .card{
+        width: 100%;
+        img{
+            width: 75%;
+            height: 150px;
+        }
+    }
+}
+
+@media screen and (max-width: 540px){
+    .title{
+        p{
+            font-size: 2rem;
+        }
+    }
 }
