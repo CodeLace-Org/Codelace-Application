@@ -36,6 +36,17 @@ export class MyProfileComponent implements OnInit {
         next: (studentProfile: Profile) => {
           this.student = studentProfile;
           console.log(this.student);
+
+          // Get profile picture
+          const studentAux = localStorage.getItem('codelace_auth');
+          if(studentAux === null)
+            return;
+
+          const studentJson = JSON.parse(studentAux);
+          if(studentJson === null)
+            return;
+
+          this.student.profile_picture = studentJson.student.profile_picture;
         },
         error: error => {
           console.error(error);

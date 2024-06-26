@@ -35,9 +35,6 @@
                     <label for="">Status</label>
                     <input type="text" placeholder="{{student?.status}}" formControlName="status">
                     <div class="error-div">
-                        <mat-error *ngIf="controlTouched('status') && controlHasError('status', 'required')">
-                            Este campo es obligatorio.
-                        </mat-error>
                         <mat-error *ngIf="controlTouched('status') && controlHasError('status', 'minlength')">
                             El status debe tener al menos 10 caracteres.
                         </mat-error>
@@ -45,9 +42,6 @@
                     <label for="">Descripción</label>
                     <input type="text" placeholder="{{student?.description}}" formControlName="description">
                     <div class="error-div">
-                        <mat-error *ngIf="controlTouched('description') && controlHasError('description', 'required')">
-                            Este campo es obligatorio.
-                        </mat-error>
                         <mat-error *ngIf="controlTouched('description') && controlHasError('description', 'minlength')">
                             La descripción debe tener al menos 10 caracteres.
                         </mat-error>
@@ -55,15 +49,12 @@
                     <label for="">Email</label>
                     <input type="text" placeholder="email" formControlName="email">
                     <div class="error-div">
-                        <mat-error *ngIf="controlTouched('email') && controlHasError('email', 'required')">
-                            Este campo es obligatorio.
-                        </mat-error>
                         <mat-error *ngIf="controlTouched('email') && controlHasError('email', 'email')">
                             Ingrese un correo válido.
                         </mat-error>
                     </div>
                     <div class="footer-div">
-                        <button routerLink="profile/" type="submit" [disabled]="form.invalid">
+                        <button routerLink="profile/" type="submit">
                             Guardar
                         </button>
                     </div>
@@ -75,48 +66,9 @@
                 } @else {
                     <img src="data:image/png;base64,{{student?.profile_picture}}" alt="Foto de perfil">
                 }
-                <button>Actualizar Foto</button>
-            </div>
-        </div>
-        <div class="pwd-div">
-            <div class="pwd-title">
-                <label>Cambiar contraseña</label>
-            </div>
-            <div class="pwd-options">
-                <form autocomplete="off" [formGroup]="formPassword" (ngSubmit)="updatePassword()">
-                    <input type="password" placeholder="Escribe tu contraseña actual" formControlName="pwd">
-                    <div class="error-div">
-                        <mat-error *ngIf="controlTouched('pwd') && controlHasError('pwd','required')">
-                            Este campo es obligatorio.
-                        </mat-error>
-                        <mat-error *ngIf="controlTouched('pwd') && controlHasError('pwd','minLength')">
-                            La contraseña debe tener al menos 8 caracteres.
-                        </mat-error>
-                    </div>
-                    <input type="password" placeholder="Escribe tu contraseña actual" formControlName="newPassword">
-                    <div class="error-div">
-                        <mat-error *ngIf="controlTouched('newPassword') && controlHasError('newPassword','required')">
-                            Este campo es obligatorio.
-                        </mat-error>
-                        <mat-error *ngIf="controlTouched('newPassword') && controlHasError('newPassword','minLength')">
-                            La contraseña debe tener al menos 8 caracteres.
-                        </mat-error>
-                    </div>
-                    <input type="password" placeholder="Escribe tu contraseña actual" formControlName="confirmPassword">
-                    <div class="error-div">
-                        <mat-error *ngIf="controlTouched('confirmPassword') && controlHasError('confirmPassword', 'required')">
-                            Este campo es obligatorio.
-                        </mat-error>
-                        <mat-error *ngIf="controlTouched('confirmPassword') && controlHasError('confirmPassword', 'minLength')">
-                            La contraseña debe tener al menos 8 caracteres.
-                        </mat-error>
-                    </div>
-                    <div class="footer-div">
-                        <button routerLink="/profile/info" type="submit" [disabled]="formPassword.invalid">
-                            Actualizar Contraseña
-                        </button>
-                    </div>
-                </form>
+                <input type="file" (change)="onFileSelected($event)" style="display: none;" id="fileInput" accept="image/*">
+                <!-- <button for="fileInput">Actualizar Foto</button> -->
+                <label for="fileInput" class="photo-btn">Actualizar Foto</label>
             </div>
         </div>
     </div>  
