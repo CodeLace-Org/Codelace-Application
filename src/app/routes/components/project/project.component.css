@@ -112,7 +112,8 @@
 
 	>img {
 		object-fit: cover;
-		aspect-ratio: 16/9;
+		width: 100%;
+		/* aspect-ratio: 16/9; */
 		border-radius: 15px;
 		/* aling midlle */
 		display: block;

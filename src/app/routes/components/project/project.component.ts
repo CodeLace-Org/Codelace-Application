@@ -51,6 +51,7 @@ export class ProjectComponent implements OnInit {
       .subscribe({
         next: projectDetails => {
           this.progress = projectDetails.progress
+          console.log(`Requisitos: ${this.progress}`);
         },
         error: error => {
           console.error(error)
