@@ -139,7 +139,7 @@ export class EditProfileComponent {
             verticalPosition: 'bottom',
             horizontalPosition: 'center'
           });
-          this.router.navigate(['profile']);
+          window.location.reload();
         },
         error: error => {
           this.snackBar.open(error, 'Cerrar', {
