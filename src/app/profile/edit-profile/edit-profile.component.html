@@ -35,9 +35,6 @@
                     <label for="">Status</label>
                     <input type="text" placeholder="{{student?.status}}" formControlName="status">
                     <div class="error-div">
-                        <mat-error *ngIf="controlTouched('status') && controlHasError('status', 'required')">
-                            Este campo es obligatorio.
-                        </mat-error>
                         <mat-error *ngIf="controlTouched('status') && controlHasError('status', 'minlength')">
                             El status debe tener al menos 10 caracteres.
                         </mat-error>
@@ -45,9 +42,6 @@
                     <label for="">Descripción</label>
                     <input type="text" placeholder="{{student?.description}}" formControlName="description">
                     <div class="error-div">
-                        <mat-error *ngIf="controlTouched('description') && controlHasError('description', 'required')">
-                            Este campo es obligatorio.
-                        </mat-error>
                         <mat-error *ngIf="controlTouched('description') && controlHasError('description', 'minlength')">
                             La descripción debe tener al menos 10 caracteres.
                         </mat-error>
@@ -55,15 +49,12 @@
                     <label for="">Email</label>
                     <input type="text" placeholder="email" formControlName="email">
                     <div class="error-div">
-                        <mat-error *ngIf="controlTouched('email') && controlHasError('email', 'required')">
-                            Este campo es obligatorio.
-                        </mat-error>
                         <mat-error *ngIf="controlTouched('email') && controlHasError('email', 'email')">
                             Ingrese un correo válido.
                         </mat-error>
                     </div>
                     <div class="footer-div">
-                        <button routerLink="profile/" type="submit" [disabled]="form.invalid">
+                        <button routerLink="profile/" type="submit">
                             Guardar
                         </button>
                     </div>

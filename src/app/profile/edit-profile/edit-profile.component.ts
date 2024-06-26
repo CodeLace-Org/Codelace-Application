@@ -24,16 +24,15 @@ export class EditProfileComponent {
   ){}
 
   form: FormGroup = this.fb.group({
-    // username: [, [Validators.required, Validators.pattern('^[a-zA-Z0-9_]*$')]],
-    email: [, [Validators.required, Validators.email]],
-    description: [, [Validators.required, Validators.minLength(8)]],
-    status: [, [Validators.required, Validators.minLength(8)]],
+    email: [, [Validators.email]],
+    description: [, [Validators.minLength(8)]],
+    status: [, [Validators.minLength(8)]],
   });
 
   formPassword: FormGroup = this.fb.group({
     pwd: [, [Validators.required, Validators.minLength(8)]],
     newPassword: [, [Validators.required, Validators.minLength(8)]],
-    confirmPassword: [, [Validators.required, Validators.minLength(8)]],
+    confirmPassword: [, [Validators.minLength(8)]],
   });
 
   controlHasError(control: string, error: string) {
@@ -61,7 +60,31 @@ export class EditProfileComponent {
   }
 
   updateProfile(): void {
+    const studentAux = localStorage.getItem('codelace_auth');
+    if(studentAux === null){
+      console.log('No hay datos de autenticación');
+      return;
+    }
+    const studentJson = JSON.parse(studentAux);
+    if(studentJson === null){
+      console.log('No hay datos de autenticación json');
+      return;
+    }
+    if (this.form.value.email  === null) this.form.value.email = studentJson.student.email;
+    else studentJson.student.email = this.form.value.email;
+
+    if (this.form.value.description === null)
+      this.form.value.description = studentJson.student.description;
+    else 
+      studentJson.student.description = this.form.value.description;
+
+    if (this.form.value.status === null)
+      this.form.value.status = studentJson.student.status;
+    else
+      studentJson.student.status = this.form.value.status;
+
     if(this.form.invalid || !this.student){
+      console.log('Formulario invalido');
       return;
     }
 
@@ -74,10 +97,13 @@ export class EditProfileComponent {
       status: formValue.status
     }
 
+    // console.log(studentUpdt);
+
     this.studentService.putStudentById(this.student?.id, studentUpdt)
       .subscribe({
         next: profile => {
           console.log('Formulario valido');
+          localStorage.setItem('codelace_auth', JSON.stringify(studentJson));
           this.snackBar.open('Perfil actualizado', 'Cerrar', {
             duration: 5000,
             verticalPosition: 'bottom',
