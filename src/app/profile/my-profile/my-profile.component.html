@@ -30,7 +30,11 @@
     </div>
     <div class="main-div">
         <div class="status">
-            <p>¡Hola, soy {{student?.username}}!</p>
+            @if (student?.status === null) {
+                <p>¡Hola, soy {{student?.username}}!</p>
+            } @else {
+                <p>{{student?.status}}</p>
+            }
         </div>
         <div class="desc">
             @if (student?.description === null) {
