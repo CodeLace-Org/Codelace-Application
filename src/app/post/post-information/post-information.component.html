@@ -95,13 +95,18 @@
                 </li>
             }
         </ul>
-        <div class="send-comment" style="display: flex; align-items: center;">
-            <form [formGroup]="formGroup" (ngSubmit)="submit()" style="display: flex; width: 100%;">
-                <textarea formControlName="content" placeholder="Comentar algo"
-                    style="flex-grow: 1; resize: none; border: 1px solid #ccc; border-right: none; padding: 8px; height: 40px; overflow-y: auto;"></textarea>
-                <button type="submit" style="border: 1px solid #ccc; background-color: #fff; cursor: pointer;">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABPUlEQVR4nO2WsU4CQRRFj8YAwcTQWVgZCB2hsFIStLCyt9PW0kIK0C+w0kYL/8Bg4QfwAVIgCY0tJBZY2BgLNQYwm9xiYjawkF2eMXuTKXZ35s7ZO7tvBmLF+mMqAnvAohVAFhgBXeAMWLWA6AvCa1/ALbADLMwL4F6T94CBA/MEHAOZqAGqmvASWNP1swPyAdSB3agAypqo6dxLAPtAAxg6MC3gCFgOEyANfGv9Uz7P88A58OqAvAE3QCEsiEcZb43pk3RSGfmk4gcfWFcyqwTsv6EE3h2QFyW1PgvAgUzuphy3orfvOCADpeSltRTUKPcr1rCaV+BOgxS4nDXAoQZ4/7vJElxr8InVR9iWyeaYPqmofsO0CtGnVSHalumDVSmuyfxiwmZU4r9ux33LA0nW+khWtD6UxorFvPUDrvCiZt1kMz8AAAAASUVORK5CYII="
-                        style="vertical-align: middle;">
+        <div class="send-comment">
+            <form [formGroup]="formGroup" (ngSubmit)="submit()" class="form-send-comment">
+                <textarea formControlName="content" placeholder="Comentar algo" class="textarea-comment">
+                </textarea>
+                <button type="submit" class="button-submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send-2" width="32" height="32"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="#4B5563" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M4.698 4.034l16.302 7.966l-16.302 7.966a.503 .503 0 0 1 -.546 -.124a.555 .555 0 0 1 -.12 -.568l2.468 -7.274l-2.468 -7.274a.555 .555 0 0 1 .12 -.568a.503 .503 0 0 1 .546 -.124z" />
+                        <path d="M6.5 12h14.5" />
+                    </svg>
                 </button>
             </form>
         </div>
