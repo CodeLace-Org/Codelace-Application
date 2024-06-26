@@ -1,0 +1,17 @@
+<div class="content">
+	<h1>Rutas de Aprendizaje</h1>
+	<p>Las rutas presentan los recursos necesarios para desarrollar el proyecto de cada nivel.</p>
+	<p>¡Encuentra la perfecta para ti y disfruta el viaje!</p>
+	<!-- @for (item of items; track $index) {} -->
+	<ul>
+		@for (item of routesData; track item.id) {
+		<article class="card-route" (click)="handleRoute(item)">
+			<div [innerHTML]="item.icon | icon"></div>
+			<section>
+				<p>{{item.name}}</p>
+				<p>{{item.description}}</p>
+			</section>
+		</article>
+		}
+	</ul>
+</div>

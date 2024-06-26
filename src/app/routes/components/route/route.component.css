@@ -1,0 +1,176 @@
+.content::-webkit-scrollbar {
+	display: none;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-y: auto;
+	-ms-overflow-style: none;
+
+	h1 {
+		margin-top: 3rem;
+		color: #C6AFFF;
+		font-weight: 700;
+		font-size: 48px;
+		text-align: center;
+	}
+
+	&>p {
+		color: #5C6671;
+		font-weight: 700;
+		font-size: 22px;
+		width: 1000px;
+		text-align: center;
+	}
+
+	button {
+		background-color: #C6AFFF;
+		border-color: transparent;
+		color: white;
+		padding: 0.5rem 2.5rem;
+		border-radius: 15px;
+		cursor: pointer;
+		transition: background-color 0.5s ease-in-out;
+
+		&:hover {
+			background-color: #18122B;
+		}
+	}
+
+	ul {
+		list-style: none;
+		display: flex;
+		gap: 2rem;
+		padding: 0;
+		margin: 0;
+		margin: 1.5rem 0 0 0;
+		justify-content: space-evenly;
+		align-items: stretch;
+	}
+
+}
+
+.card-project {
+	cursor: pointer;
+	border: 3px solid #C6AFFF;
+	border-radius: 8px;
+	padding: 1rem;
+	width: 400px;
+	gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	/* transition color*/
+	transition: all 0.6s ease-in-out;
+
+	header {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		width: 100%;
+
+		img {
+			object-fit: cover;
+			aspect-ratio: 16/9;
+			border-radius: 8px;
+		}
+
+		article {
+			border: 2px solid;
+			border-radius: 5px;
+			object-fit: contain;
+			padding: 5px;
+			/* fit content */
+			width: fit-content;
+			font-weight: 700;
+		}
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+
+		p {
+			width: 100%;
+		}
+
+		p:first-child {
+			align-self: flex-start;
+			font-size: 16px;
+			font-weight: 700;
+		}
+
+		p:last-child {
+			margin: 0;
+			line-height: 15px;
+			color: #5C6671;
+			font-size: 12px;
+			font-weight: 700;
+		}
+	}
+
+	&:hover {
+		background-color: #18122B;
+		border-color: #18122B;
+
+		article {
+			color: #d1d1d1;
+
+		}
+
+		section {
+			& p:first-child {
+				color: white;
+			}
+
+			& p:last-child {
+				color: #d1d1d1;
+
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.content {
+
+		&>h1 {
+			font-size: 28px;
+		}
+
+		&>p {
+			font-size: 11px;
+		}
+
+		width: 95dvw;
+	}
+
+	.card-project {
+		width: 60dvw;
+
+		header {
+			img {
+				width: 50dvw;
+				height: auto;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.content {
+		&>p {
+			font-size: 18px;
+		}
+
+		ul {
+			flex-direction: column;
+		}
+	}
+}

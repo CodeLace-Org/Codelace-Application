@@ -1,0 +1,18 @@
+<div class="content">
+    <h1>Antes de aprender, queremos conocerte...</h1>
+    <div>
+        <p>¿Qué proyecto te emociona más?</p>
+        <mat-radio-group aria-label="Select an option" (change)="onSelectionChange($event)">
+            <mat-radio-button value="1"><p>Crear una aplicación de actividades informales para networking.</p></mat-radio-button>
+            <mat-radio-button value="2"><p>Implementar la interfaz de usuario para una plataforma de venta de entradas para eventos.</p></mat-radio-button>
+            <mat-radio-button value="3"><p>Implementar la lógica de usuario para un sistema de gestión de membresías para un club deportivo.</p></mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div class="footer-div">
+        <a [routerLink]="['/initial-form-page-2']">
+            <button type="submit" [disabled]="!selectedOption">
+                ¡Listo!
+            </button>
+        </a>
+    <div>
+</div>

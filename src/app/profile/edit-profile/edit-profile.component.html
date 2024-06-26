@@ -1,0 +1,75 @@
+<div class="canvas">
+    <div class="side-div">
+        <div class="profile-div">
+            @if (student?.profile_picture === null) {
+                <img src="/assets/default_pfp.webp" alt="Foto de perfil">
+            } @else {
+                <img src="data:image/png;base64,{{student?.profile_picture}}" alt="Foto de perfil">
+            }
+            <p>{{student?.username}}</p>
+            <div class="logout" (click)="logout()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="25" height="25" viewBox="0 0 24 24" stroke-width="2" stroke="#E876BB" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                    <path d="M9 12h12l-3 -3" />
+                    <path d="M18 15l3 -3" />
+                </svg>
+                <p>Cerrar sesión</p>
+            </div>
+        </div>
+        <div class="options-div">
+            <ul>
+                <li routerLink="/profile">
+                    <p>Mi perfil</p>
+                </li>
+                <li routerLink="/profile/info" class="active" routerLinkActive="active">
+                    <p>Información personal</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-div">
+        <div class="info-div">
+            <div class="desc-div">
+                <form autocomplete="off" [formGroup]="form" (ngSubmit)="updateProfile()" >
+                    <label for="">Status</label>
+                    <input type="text" placeholder="{{student?.status}}" formControlName="status">
+                    <div class="error-div">
+                        <mat-error *ngIf="controlTouched('status') && controlHasError('status', 'minlength')">
+                            El status debe tener al menos 10 caracteres.
+                        </mat-error>
+                    </div>
+                    <label for="">Descripción</label>
+                    <input type="text" placeholder="{{student?.description}}" formControlName="description">
+                    <div class="error-div">
+                        <mat-error *ngIf="controlTouched('description') && controlHasError('description', 'minlength')">
+                            La descripción debe tener al menos 10 caracteres.
+                        </mat-error>
+                    </div>
+                    <label for="">Email</label>
+                    <input type="text" placeholder="email" formControlName="email">
+                    <div class="error-div">
+                        <mat-error *ngIf="controlTouched('email') && controlHasError('email', 'email')">
+                            Ingrese un correo válido.
+                        </mat-error>
+                    </div>
+                    <div class="footer-div">
+                        <button routerLink="profile/" type="submit">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="profile-div">
+                @if (student?.profile_picture === null) {
+                    <img src="/assets/default_pfp.webp" alt="Foto de perfil">
+                } @else {
+                    <img src="data:image/png;base64,{{student?.profile_picture}}" alt="Foto de perfil">
+                }
+                <input type="file" (change)="onFileSelected($event)" style="display: none;" id="fileInput" accept="image/*">
+                <!-- <button for="fileInput">Actualizar Foto</button> -->
+                <label for="fileInput" class="photo-btn">Actualizar Foto</label>
+            </div>
+        </div>
+    </div>  
+</div>

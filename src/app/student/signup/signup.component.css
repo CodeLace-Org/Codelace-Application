@@ -1,0 +1,136 @@
+.canvas {
+    /* background-color: aqua; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.form-div {
+    width: 100%;
+    max-width: 550px;
+    /* height: 85%; */
+    height: fit-content;
+    background-color: #F8FAFC;
+    border-radius: 8px;
+}
+
+.header-div {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    margin: 0;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.highlight {
+    padding: 0 0.5em;
+    width: fit-content;
+    height: fit-content;
+}
+
+.purple {
+    background-color: #C6AFFF;
+    color: #FFFFFF;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-div {
+    min-height: 35px;
+    justify-content: start;
+    width: 80%;
+    font-size: 15px;
+}
+
+input {
+    outline: 0;
+    border: 1px solid #9ca3af7e;
+    border-radius: 8px;
+    height: 40px;
+    font-size: 18px;
+    padding: 0.25em 0.5em;
+    width: 90%;
+    transition: 180ms box-shadow ease-in-out;
+}
+
+input:focus{
+    border-color: #C6AFFF;
+    box-shadow: 0 0 0 3px #c6afff5e;
+    transition: 180ms box-shadow ease-in-out;
+    outline: 3px solid transparent;
+}
+
+.footer-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+button {
+    margin-top: 30px;
+    border: 1px solid #C6AFFF;
+    border-radius: 8px;
+    background-color: #C6AFFF;
+    color: white;
+    height: 50px;
+    width: 50%;
+    font-size: 25px;
+    font-weight: 550;
+    margin-bottom: 30px;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #FFFFFF;
+    border-color: #C6AFFF;
+    box-shadow: 0 0 0 3px #c6afff5e;
+    transition: 0.3s ease-in-out;
+    color: #C6AFFF;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: #C6AFFF;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+}
+
+a:hover{
+    color: #84F4FF;
+    transition: 0.3s ease-in-out;
+}
+
+button:disabled {
+    /*ignore the hover and remain in gray*/
+    background-color: #9ca3af;
+    border-color: #9ca3af;
+    color: white;
+    cursor: not-allowed;
+    box-shadow: 0 0 0 3px #FFFFFF;
+}
+
+@media screen and (max-width: 640px) {
+    .form-div {
+        background-color: #FFFFFF;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .title {
+        font-size: 30px;
+    }
+}
