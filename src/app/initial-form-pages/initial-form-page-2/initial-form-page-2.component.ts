@@ -4,6 +4,7 @@ import { Observer, catchError, of } from 'rxjs';
 import { RouteResponse } from '../../routes/interfaces/routes-response';
 import {ChangeDetectionStrategy} from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 
@@ -18,7 +19,11 @@ import { ChangeDetectorRef } from '@angular/core';
 export class InitialFormPage2Component implements OnInit{
   routeData: RouteResponse | undefined;
 
-  constructor(private formpage2service: FormPage2Service, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private formpage2service: FormPage2Service,
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) {}
 
   
 
@@ -57,5 +62,8 @@ export class InitialFormPage2Component implements OnInit{
         console.log('Operación completada.');
       }
     });
+  }
+  goToHome() {
+    this.router.navigate(['home']);
   }
 }

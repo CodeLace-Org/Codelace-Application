@@ -55,7 +55,7 @@ export class SignupComponent {
                 verticalPosition: 'bottom',
                 horizontalPosition: 'center'
               });
-              this.router.navigate(['home']);
+              this.router.navigate(['initial-form-page-1']);
             })
         },
         error: error => {
