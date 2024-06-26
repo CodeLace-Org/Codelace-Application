@@ -14,6 +14,7 @@ import { Profile } from '../../student/interfaces/auth.interface';
 export class EditProfileComponent {
 
   student?: Profile;
+  profile_picture?: string; 
 
   constructor(
     private fb: FormBuilder,
@@ -50,12 +51,39 @@ export class EditProfileComponent {
       this.studentService.getStudentById(student.id).subscribe({
         next: (studentProfile: Profile) => {
           this.student = studentProfile;
+
+          const studentAux = localStorage.getItem('codelace_auth');
+          if(studentAux === null)
+            return;
+
+          const studentJson = JSON.parse(studentAux);
+          if(studentJson === null)
+            return;
+
+          this.student.profile_picture = studentJson.student.profile_picture;
+          this.profile_picture = studentJson.student.profile_picture;
           // this.form.patchValue(studentProfile);
         },
         error: error => {
           console.error(error);
         }
       });
+    }
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const base64String: string = e.target.result;
+          console.log(base64String);
+          const base64Parts = base64String.split(',');
+          const base64Body = base64Parts.length > 1 ? base64Parts[1] : base64Parts[0];
+          this.profile_picture = base64Body;
+          this.updateProfile();
+        };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -83,6 +111,8 @@ export class EditProfileComponent {
     else
       studentJson.student.status = this.form.value.status;
 
+    studentJson.student.profile_picture = this.profile_picture;
+
     if(this.form.invalid || !this.student){
       console.log('Formulario invalido');
       return;
@@ -109,7 +139,7 @@ export class EditProfileComponent {
             verticalPosition: 'bottom',
             horizontalPosition: 'center'
           });
-          this.router.navigate(['my-profile']);
+          this.router.navigate(['profile']);
         },
         error: error => {
           this.snackBar.open(error, 'Cerrar', {
@@ -119,38 +149,6 @@ export class EditProfileComponent {
           });
         }
       });
-  }
-
-  updatePassword(): void {
-    if(this.formPassword.invalid || !this.student){
-      return;
-    }
-    const formValue = this.formPassword.value;
-    const updateRequest = {
-      pwd: formValue.password,
-      newPassword: formValue.newPassword,
-      confirmPassword: formValue.confirmPassword
-    }
-
-    this.studentService.putPasswordStudentById(this.student.id, updateRequest)
-      .subscribe({
-        next: profile => {
-          console.log('Formulario valido');
-          this.snackBar.open('Contraseña actualizada', 'Cerrar', {
-            duration: 5000,
-            verticalPosition: 'bottom',
-            horizontalPosition: 'center'
-          });
-          this.router.navigate(['my-profile']);
-        },
-        error: error => {
-          this.snackBar.open(error, 'Cerrar', {
-            duration: 5000,
-            verticalPosition: 'bottom',
-            horizontalPosition: 'center'
-          });
-        }
-    });
   }
 
   logout() {

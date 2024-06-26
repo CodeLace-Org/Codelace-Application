@@ -81,22 +81,22 @@ button {
     }
 }
 
-.status, .desc {
-    margin: 2rem 1rem;
+.photo-btn{
+    background-color: #C6AFFF;
+    border-color: transparent;
+    color: white;
+    padding: 0.5rem 2.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+
+    &:hover {
+        background-color: #18122B;
+    }
 }
 
-.main-div {
-    background-color: #F8FAFC;
-    border-radius: 8px;
-    height: calc(100% - 6rem);
-    width: calc(100% - 6rem - 250px);
-    margin-right: 3rem;
-    margin-top: auto;
-    margin-bottom: auto;
-
-    p {
-        font-weight: 500;
-    }
+.status, .desc {
+    margin: 2rem 1rem;
 }
 
 .subtitle {
@@ -194,11 +194,27 @@ button {
     }
 }
 
+.main-div {
+    background-color: #F8FAFC;
+    border-radius: 8px;
+    height: calc(100% - 6rem);
+    width: calc(100% - 6rem - 250px);
+    margin-right: 3rem;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    p {
+        font-weight: 500;
+    }
+}
+
 .info-div {
-    margin: 0.5rem 2rem 0.5rem 2rem;
+    margin: 0.5rem 2rem 0.5rem 0rem;
+    width: calc(100% - 2rem);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-around;
     column-gap: 1rem;
     p {
         font-weight: 600;
@@ -207,19 +223,21 @@ button {
 
 .desc-div > form {
     width: 800px;
+    min-width: 400px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
 input {
-    outline: 0;
+    /* outline: 0; */
     border: 1px solid #9ca3af7e;
     border-radius: 8px;
     height: 40px;
     font-size: 18px;
-    padding: 0.25em 0.5em;
-    width: 100%;
+    margin: 0.25rem 0.5rem 0 0;
+    width: calc(100% - 2rem);
     transition: 180ms box-shadow ease-in-out;
 }
 
