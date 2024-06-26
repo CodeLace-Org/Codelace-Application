@@ -43,8 +43,8 @@
     }
     >img{
         margin-bottom: 20px;
-        width: 25rem;
-        height: 25rem;
+        width: 100%;
+        object-fit: cover;
     }
 }
 

@@ -83,30 +83,28 @@ export class PostInformationComponent implements OnInit {
   }
 
   formatearFecha(fechaString: string) {
-    // Determinar el separador (asume '/' o '-' como posibles separadores)
-    const separador = fechaString.includes('/') ? '/' : '-';
+    const fecha = new Date(fechaString)
+    const dia = fecha.getDate()
+    const mes = fecha.getMonth()
+    const anio = fecha.getFullYear()
 
-    // Dividir la cadena de fecha basada en el separador identificado
-    const parts = fechaString.split(separador);
-    const day = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1; // Los meses están indexados desde 0
-    const year = parseInt(parts[2], 10);
-
-    // Crear un nuevo objeto Date usando el año, mes y día
-    const fecha = new Date(year, month, day);
-
-    const dia = fecha.getDate();
-    const mes = fecha.getMonth();
-    const anio = fecha.getFullYear();
     const meses = [
-      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-    ];
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Noviembre',
+      'Diciembre'
+    ]
 
-    // Formatear la fecha en el formato deseado
-    const fechaFormateada = `${dia} ${meses[mes]} ${anio}`;
-
-    return fechaFormateada;
+    const fechaFormateada = `${dia} ${meses[mes]} ${anio}`
+    return fechaFormateada
   }
 
   // Get createComment
